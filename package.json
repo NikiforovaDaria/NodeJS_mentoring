@@ -1,0 +1,30 @@
+{
+  "name": "taskone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "task1": "node task1.js",
+    "task2_1": "node task2_1.js",
+    "task2_2": "node task2_2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikiforovaDaria/NodeJS_mentoring.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikiforovaDaria/NodeJS_mentoring/issues"
+  },
+  "homepage": "https://github.com/NikiforovaDaria/NodeJS_mentoring#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "csv-parser": "^2.3.2",
+    "csvtojson": "^2.0.10",
+    "json-format": "^1.0.1"
+  }
+}
