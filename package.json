@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "task1": "node src/task1.js",
-    "task2": "node src/task2.js",
-    "task3_1": "nodemon --exec babel-node src/task3/task1_ES6.js",
-    "task3_2": "nodemon --exec babel-node src/task3/task2_ES6.js"
+    "task1.1": "node Task1/src/task1.js",
+    "task1.2": "node Task1/src/task2.js",
+    "task1.3_1": "nodemon --exec babel-node Task1/src/task3/task1_ES6.js",
+    "task1.3_2": "nodemon --exec babel-node Task1/src/task3/task2_ES6.js"
   },
   "repository": {
     "type": "git",

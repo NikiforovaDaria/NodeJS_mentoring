@@ -2,8 +2,8 @@ import fs from 'fs';
 import csv from 'csvtojson';
 import { pipeline } from 'stream';
 
-const readStream = fs.createReadStream('./node_mentoring_t1_2_input_example.csv');
-const writeStream = fs.createWriteStream('task2_2.txt');
+const readStream = fs.createReadStream('Task1/node_mentoring_t1_2_input_example.csv');
+const writeStream = fs.createWriteStream('Task1/task2_2.txt');
 
 pipeline(
     readStream,
