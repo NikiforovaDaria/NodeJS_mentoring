@@ -1,0 +1,38 @@
+{
+  "name": "nodejs_mentoring",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc-node": "tsc && nodemon Task2/app.ts",
+    "ts-node-dev": "ts-node-dev Task2/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikiforovaDaria/NodeJS_mentoring.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikiforovaDaria/NodeJS_mentoring/issues"
+  },
+  "homepage": "https://github.com/NikiforovaDaria/NodeJS_mentoring#readme",
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "express": "^4.17.1",
+    "express-joi-validation": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/node": "^12.12.20",
+    "@types/uuid": "^3.4.6",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.7.2",
+    "ts-node": "^8.5.4",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.3"
+  }
+}
