@@ -1,5 +1,5 @@
 import { User } from './user.model';
-import uuidv4 from "uuid/v4";
+import uuidv4 from 'uuid/v4';
 
 export const usersCollection: User[] = [
 	{

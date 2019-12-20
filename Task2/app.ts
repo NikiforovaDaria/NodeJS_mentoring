@@ -22,8 +22,8 @@ function getAutoSuggestUsers (loginSubstringin:string, limit: string):any {
 		return userA.login < userB.login ? -1 : 1;
 	});
 	const limitCollection = Math.min(
-			filteredAndSortedUsersCollection.length, 
-			numLimit);				
+		filteredAndSortedUsersCollection.length, 
+		numLimit);				
 	return filteredAndSortedUsersCollection.slice(0, limitCollection);
 	
 }
@@ -35,9 +35,9 @@ router.route('/')
 			(usersCollection && usersCollection.length) > 0
 				? res.json(usersCollection)
 				: res.status(404).send('No one user was found :(');
-			} else {
-				res.json(usersCollection);
-			}
+		} else {
+			res.json(usersCollection);
+		}
 		next();
 	})
 	.post((req, res) => {		
