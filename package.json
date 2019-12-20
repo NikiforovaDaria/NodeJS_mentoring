@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc-node": "tsc && nodemon Task2/app.ts",
-    "ts-node-dev": "ts-node-dev Task2/app.ts"
+    "ts-node-dev": "ts-node-dev Task2/app.ts",
+    "eslint": "eslint . --ext .ts"
   },
   "repository": {
     "type": "git",
