@@ -1,39 +1,40 @@
 import { User } from './user.model';
+import uuidv4 from "uuid/v4";
 
 export const usersCollection: User[] = [
 	{
-		id: '1',
-		login: '1',
-		password: '1',
-		age: 1,
+		id: uuidv4(),
+		login: 'one',
+		password: '1aA',
+		age: 10,
 		isDeleted: false,
 	},
 	{
-		id: '2',
-		login: '2',
-		password: '2',
-		age: 2,
+		id: uuidv4(),
+		login: 'two',
+		password: '2bB',
+		age: 20,
 		isDeleted: false,
 	},
 	{
-		id: '3',
-		login: '3',
-		password: '3',
-		age: 3,
+		id: uuidv4(),
+		login: 'three',
+		password: '3cC',
+		age: 30,
 		isDeleted: false,
 	},
 	{
-		id: '4',
-		login: '4',
-		password: '4',
-		age: 4,
+		id: uuidv4(),
+		login: 'four',
+		password: '4eE',
+		age: 40,
 		isDeleted: false,
 	},
 	{
-		id: '5',
-		login: '5',
-		password: '5',
-		age: 5,
+		id: uuidv4(),
+		login: 'five',
+		password: '5fF',
+		age: 50,
 		isDeleted: false,
 	}			
 ];

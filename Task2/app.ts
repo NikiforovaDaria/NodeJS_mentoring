@@ -9,13 +9,38 @@ const router = express.Router();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/', router);
+app.use('/users', router);
 
-router.route('/users')
-	.get((req, res) => {
-		res.json(usersCollection);
+function getAutoSuggestUsers (loginSubstringin:string, limit: string):any {
+	if (!loginSubstringin || loginSubstringin.length === 0) return usersCollection;
+	loginSubstringin = loginSubstringin.toLowerCase();
+	const numLimit: number = limit ? +limit : usersCollection.length;
+
+	const filteredAndSortedUsersCollection = usersCollection.filter(user => {
+		return user.login.startsWith(loginSubstringin);
+	}).sort((userA, userB) => {
+		return userA.login < userB.login ? -1 : 1;
+	});
+	const limitCollection = Math.min(
+			filteredAndSortedUsersCollection.length, 
+			numLimit);				
+	return filteredAndSortedUsersCollection.slice(0, limitCollection);
+	
+}
+
+router.route('/')
+	.get(function (req, res, next) {
+		if(Object.keys(req.query).length !== 0){
+			const usersCollection = getAutoSuggestUsers(req.query.login, req.query.limit);
+			(usersCollection && usersCollection.length) > 0
+				? res.json(usersCollection)
+				: res.status(404).send('No one user was found :(');
+			} else {
+				res.json(usersCollection);
+			}
+		next();
 	})
-	.post((req, res) => {
+	.post((req, res) => {		
 		const { login, password, age } = req.body;
 		const user = {
 			id: uuidv4(),
@@ -31,7 +56,7 @@ router.route('/users')
 		res.json(user);
 	});
 
-router.route('/users/:id')
+router.route('/:id')
 	.get((req, res) => {
 		const user = usersCollection.find(u => u.id === req.params.id);
 		if(!user) return res.status(404).send('User not found :(');
