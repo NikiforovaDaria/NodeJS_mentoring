@@ -3,6 +3,7 @@ import uuidv4 from 'uuid/v4';
 
 import { usersCollection } from './usersCollection';
 import validateUser from './checkValidation';
+import { User } from './user.model';
 
 const app: express.Application = express();
 const router = express.Router();
@@ -11,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/users', router);
 
-function getAutoSuggestUsers (loginSubstring: string, limit: number):any {
+function getAutoSuggestUsers (loginSubstring: string, limit: number):User[] {
 	const collectionLimit: number = limit ? limit : usersCollection.length;
 
 	if (!loginSubstring || loginSubstring.length === 0) return usersCollection.slice(0, collectionLimit);
@@ -27,7 +28,7 @@ router.route('/')
 		const { login, limit } = req.query;
 
 		const usersCollection = getAutoSuggestUsers(login, +limit);
-		usersCollection.forEach((user: any) => {
+		usersCollection.forEach((user: User) => {
 			delete user.password;
 		});
 		(usersCollection && usersCollection.length) > 0 
