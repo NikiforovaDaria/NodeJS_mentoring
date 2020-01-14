@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc-node": "tsc && nodemon Task2/usersAPI.ts",
     "ts-node-dev": "ts-node-dev Task2/usersAPI.ts",
     "eslint": "eslint . --ext .ts"
   },
