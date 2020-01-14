@@ -11,34 +11,28 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/users', router);
 
-function getAutoSuggestUsers (loginSubstringin:string, limit: string):any {
-	if (!loginSubstringin || loginSubstringin.length === 0) return usersCollection;
-	loginSubstringin = loginSubstringin.toLowerCase();
-	const numLimit: number = limit ? +limit : usersCollection.length;
+function getAutoSuggestUsers (loginSubstring: string, limit: number):any {
+	const collectionLimit: number = limit ? limit : usersCollection.length;
 
-	const filteredAndSortedUsersCollection = usersCollection.filter(user => {
-		return user.login.startsWith(loginSubstringin);
-	}).sort((userA, userB) => {
-		return userA.login < userB.login ? -1 : 1;
-	});
-	const limitCollection = Math.min(
-		filteredAndSortedUsersCollection.length, 
-		numLimit);				
-	return filteredAndSortedUsersCollection.slice(0, limitCollection);
-	
+	if (!loginSubstring || loginSubstring.length === 0) return usersCollection.slice(0, collectionLimit);
+	loginSubstring = loginSubstring.toLowerCase();
+	return usersCollection
+		.filter(user => user.login.toLowerCase().startsWith(loginSubstring))
+		.sort((userA, userB) => userA.login < userB.login ? -1 : 1)
+		.slice(0, collectionLimit);	
 }
 
 router.route('/')
-	.get(function (req, res, next) {
-		if(Object.keys(req.query).length !== 0){
-			const usersCollection = getAutoSuggestUsers(req.query.login, req.query.limit);
-			(usersCollection && usersCollection.length) > 0
-				? res.json(usersCollection)
-				: res.status(404).send('No one user was found :(');
-		} else {
-			res.json(usersCollection);
-		}
-		next();
+	.get((req, res) => {
+		const { login, limit } = req.query;
+
+		const usersCollection = getAutoSuggestUsers(login, +limit);
+		usersCollection.forEach((user: any) => {
+			delete user.password;
+		});
+		(usersCollection && usersCollection.length) > 0 
+			? res.status(200).json(usersCollection)
+			: res.status(404).send('No one user was found :(');
 	})
 	.post((req, res) => {		
 		const { login, password, age } = req.body;
@@ -60,6 +54,7 @@ router.route('/:id')
 	.get((req, res) => {
 		const user = usersCollection.find(u => u.id === req.params.id);
 		if(!user) return res.status(404).send('User not found :(');
+		delete user.password;
 		res.json(user);
 	})
 	.put((req, res) => {
@@ -79,7 +74,7 @@ router.route('/:id')
 
 		if(!user) return res.status(404).send('User not found :(');
 		user.isDeleted = true;
-		res.json(user);
+		res.send('User is deleted');
 	});
 
 app.listen(port, ():void => console.log(`Listenning on port ${port}`));
