@@ -28,6 +28,10 @@ export class UserDAO {
 	public static async updateUser(updatedUser: UserModel, id: number): Promise<[number, UserModel[]]> {
 		return UserModel.update({ ...updatedUser }, { where: { id, 'isDeleted': false } });
 	}
+
+	public static async deleteUser(updatedUser: UserModel, id: number): Promise<[number, UserModel[]]> {
+		return UserModel.update({ ...updatedUser }, { where: { id }});
+	}
 }
 
 

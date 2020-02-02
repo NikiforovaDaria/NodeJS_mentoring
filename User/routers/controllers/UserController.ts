@@ -8,7 +8,7 @@ export default class UserController {
 			const users = await UserService.getAllUsers();
 			return res.status(200).json(users);
 		} catch(err) {
-			res.status(400).json({ error: err.message });
+			res.status(500).json({ error: err.message });
 		}
 	}
 
@@ -18,10 +18,10 @@ export default class UserController {
 			const user = await UserService.getUserById(+id);
 			user 
 				? res.status(200).json(user)
-				: res.status(404).send(`User with ${id} not found :(`);
+				: res.status(500).send(`User with ${id} not found :(`);
 
 		} catch(err) {
-			res.status(404).send(`User with ${id} not found :(`);
+			res.status(500).send(`User with ${id} not found :(`);
 		}
 	}
 
@@ -32,7 +32,7 @@ export default class UserController {
 			return res.status(200).json(addedUser);
 
 		} catch(err) {
-			res.status(400).send(err.details[0].message);
+			res.status(500).send(err.message);
 		}
 	}
 
@@ -41,12 +41,12 @@ export default class UserController {
 		const updatedUser = req.body;
 		try {
 			const user = await UserService.getUserById(+id);
-			if (!user) return res.status(404).send('User not found :(');
+			if (!user) return res.status(500).send('User not found :(');
 
 			await UserService.updateUser(updatedUser, +id);
 			return res.status(200).send('User is updated');
 		} catch(err) {
-			res.status(404).send('User not found :(');
+			res.status(500).send('User not found :(');
 		}
 	}
 
@@ -54,14 +54,12 @@ export default class UserController {
 		const { id } = req.params;
 		try {
 			const deletedUser = await UserService.getUserById(+id);
-			if (!deletedUser) return res.status(404).send('User not found :(');
+			if (!deletedUser) return res.status(500).send('User not found :(');
 
 			await UserService.deleteUser(deletedUser, +id);
 			return res.status(200).send('User is deleted');
 		} catch(err) {
-			res.status(404).send('User not found :(');
+			res.status(500).send('User not found :(');
 		}
 	}
-
-	
 }
