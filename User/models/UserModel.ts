@@ -6,7 +6,6 @@ export class UserModel extends Model {
     public login!: string;
     public password!: string;
     public age!: number;
-	public isDeleted!: boolean;
 	public deletedAt!: null | Date;
 
 	public readonly createdAt!: Date;
@@ -32,11 +31,6 @@ UserModel.init ({
 		type: DataTypes.INTEGER,
 		allowNull: true,
 	},
-	isDeleted: {
-		type: DataTypes.BOOLEAN,
-		defaultValue: false,
-		allowNull: false,
-	},
 	createdAt: {
 		type: DataTypes.DATE,
 		defaultValue: DataTypes.NOW
@@ -50,6 +44,7 @@ UserModel.init ({
 	}
 }, {
 	timestamps: true,
+	paranoid: true,
 	sequelize: database,
 	modelName: 'UserModel',
 	tableName: 'user'

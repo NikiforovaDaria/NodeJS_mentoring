@@ -20,9 +20,7 @@ export class UserService {
 		return await UserDAO.updateUser(updatedUser, +id);
 	}
 
-	public static async deleteUser(deletedUser: UserModel, id: number) {
-		const copyOfDeletedUser = Object.assign({}, deletedUser);
-		copyOfDeletedUser.isDeleted = true;
-		return await UserDAO.deleteUser(copyOfDeletedUser, +id);
+	public static async deleteUser(id: number) {
+		return await UserDAO.deleteUser(+id);
 	}
 }
