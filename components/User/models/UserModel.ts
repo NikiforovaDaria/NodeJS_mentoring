@@ -1,8 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
-import database from '../../config/database';
+import database from '../../../config/database';
+
+import uuid = require('uuid');
 
 export class UserModel extends Model {
-    public id!: number;
+    public id!: string;
     public login!: string;
     public password!: string;
     public age!: number;
@@ -14,9 +16,10 @@ export class UserModel extends Model {
 
 UserModel.init ({
 	id: {
-		type: DataTypes.STRING,
-		autoIncrement: true,
+		allowNull: false,
 		primaryKey: true,
+		type: DataTypes.UUID,
+		defaultValue: () => uuid()
 	},
 	login: {
 		type: DataTypes.STRING,

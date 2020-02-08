@@ -8,7 +8,7 @@ export class UserService {
 		return await UserDAO.getAllUsers();
 	}
 
-	public static async getUserById(id: number): Promise<UserModel | null> {
+	public static async getUserById(id: string): Promise<UserModel | null> {
 		return await UserDAO.getUserById(id);
 	}
 
@@ -16,11 +16,11 @@ export class UserService {
 		return await UserDAO.addUser({...user});
 	}
 
-	public static async updateUser(updatedUser: UserModel, id: number) {
-		return await UserDAO.updateUser(updatedUser, +id);
+	public static async updateUser(updatedUser: UserModel, id: string) {
+		return await UserDAO.updateUser(updatedUser, id);
 	}
 
-	public static async deleteUser(id: number) {
-		return await UserDAO.deleteUser(+id);
+	public static async deleteUser(id: string) {
+		return await UserDAO.deleteUser(id);
 	}
 }

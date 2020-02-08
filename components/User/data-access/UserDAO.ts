@@ -11,7 +11,7 @@ export class UserDAO {
 			.then(users => users);
 	}
 
-	public static async getUserById(id: number): Promise<UserModel | null> {
+	public static async getUserById(id: string): Promise<UserModel | null> {
 		return UserModel.findOne({
 			where: {
 				id,
@@ -25,11 +25,11 @@ export class UserDAO {
 		return UserModel.create({...user});
 	}
     
-	public static async updateUser(updatedUser: UserModel, id: number): Promise<[number, UserModel[]]> {
+	public static async updateUser(updatedUser: UserModel, id: string): Promise<[number, UserModel[]]> {
 		return UserModel.update({ ...updatedUser }, { where: { id, 'deletedAt': null } });
 	}
 
-	public static async deleteUser(id: number): Promise<number> {
+	public static async deleteUser(id: string): Promise<number> {
 		return UserModel.destroy({ where: { id }});
 	}
 }

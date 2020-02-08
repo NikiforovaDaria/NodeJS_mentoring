@@ -1,4 +1,4 @@
-import { UserService } from '../../services/userService';
+import { UserService } from '../../services/UserService';
 import { Request, Response } from 'express';
 
 
@@ -15,7 +15,7 @@ export default class UserController {
 	public static async getUserById(req: Request, res: Response) {
 		const { id } = req.params;
 		try {
-			const user = await UserService.getUserById(+id);
+			const user = await UserService.getUserById(id);
 			user 
 				? res.status(200).json(user)
 				: res.status(500).send(`User with ${id} not found :(`);
@@ -40,10 +40,10 @@ export default class UserController {
 		const { id } = req.params;
 		const updatedUser = req.body;
 		try {
-			const user = await UserService.getUserById(+id);
+			const user = await UserService.getUserById(id);
 			if (!user) return res.status(500).send('User not found :(');
 
-			await UserService.updateUser(updatedUser, +id);
+			await UserService.updateUser(updatedUser, id);
 			return res.status(200).send('User is updated');
 		} catch(err) {
 			res.status(500).send('User not found :(');
@@ -53,10 +53,10 @@ export default class UserController {
 	public static async deleteUser(req: Request, res: Response) {
 		const { id } = req.params;
 		try {
-			const deletedUser = await UserService.getUserById(+id);
+			const deletedUser = await UserService.getUserById(id);
 			if (!deletedUser) return res.status(500).send('User not found :(');
 
-			await UserService.deleteUser(+id);
+			await UserService.deleteUser(id);
 			return res.status(200).send('User is deleted');
 		} catch(err) {
 			res.status(500).send('User not found :(');
