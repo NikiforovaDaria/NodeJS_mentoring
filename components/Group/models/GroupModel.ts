@@ -49,5 +49,5 @@ GroupModel.init ({
 	timestamps: true,
 	sequelize: database,
 	modelName: 'GroupModel',
-	tableName: 'group'
+	tableName: 'Groups'
 });
