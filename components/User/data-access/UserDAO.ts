@@ -5,7 +5,6 @@ export class UserDAO {
 
 	public static async getAllUsers(): Promise<UserModel[]> {
 		return UserModel.findAll({
-			where: {'deletedAt': null},
 			attributes: {exclude: ['password']}
 		})
 			.then(users => users);
@@ -15,6 +14,16 @@ export class UserDAO {
 		return UserModel.findOne({
 			where: {
 				id,
+				'deletedAt': null
+			},
+			attributes: {exclude: ['password']}
+		});
+	}
+
+	public static async getUsersByIds(ids: string[]): Promise<UserModel[] | null> {
+		return UserModel.findAll({
+			where: {
+				id: ids,
 				'deletedAt': null 
 			},
 			attributes: {exclude: ['password']}
@@ -24,7 +33,7 @@ export class UserDAO {
 	public static async addUser(user: User): Promise<UserModel> {
 		return UserModel.create({...user});
 	}
-    
+
 	public static async updateUser(updatedUser: UserModel, id: string): Promise<[number, UserModel[]]> {
 		return UserModel.update({ ...updatedUser }, { where: { id, 'deletedAt': null } });
 	}

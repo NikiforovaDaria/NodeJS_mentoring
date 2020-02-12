@@ -1,13 +1,16 @@
 import { Model, DataTypes } from 'sequelize';
 import database from '../../../config/database';
 
+import { GroupModel } from '../../Group/models/GroupModel';
+import { UserModel } from '../../User/models/UserModel';
+
 export class UserGroupModel extends Model {
-    public group_id!: string;
-    public user_id!: string;
+    public groupId!: string;
+    public userId!: string;
 }
 
 UserGroupModel.init ({
-	user_id: {
+	groupId: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		references: {
@@ -15,7 +18,7 @@ UserGroupModel.init ({
 			key: 'id'
 		}
 	},
-	group_id: {
+	userId: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		references: {
@@ -26,5 +29,8 @@ UserGroupModel.init ({
 }, {
 	sequelize: database,
 	modelName: 'UserGroupModel',
-	tableName: 'UserGroup'
+	tableName: 'userGroup'
 });
+
+UserModel.belongsToMany(GroupModel, {through: 'UserGroupModel'});
+GroupModel.belongsToMany(UserModel, {through: 'UserGroupModel'});

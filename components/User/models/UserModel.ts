@@ -2,7 +2,6 @@ import { Model, DataTypes } from 'sequelize';
 import uuid = require('uuid');
 
 import database from '../../../config/database';
-import { GroupModel } from '../../Group/models/GroupModel';
 
 export class UserModel extends Model {
     public id!: string;
@@ -51,11 +50,5 @@ UserModel.init ({
 	paranoid: true,
 	sequelize: database,
 	modelName: 'UserModel',
-	tableName: 'Users'
-});
-
-UserModel.belongsToMany(GroupModel, {
-	through: 'UserGroup',
-	as: 'groups',
-	foreignKey: 'user_id'
+	tableName: 'users'
 });

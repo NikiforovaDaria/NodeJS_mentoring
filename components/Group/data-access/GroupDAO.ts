@@ -5,7 +5,6 @@ export class GroupDAO {
 
 	public static async getAllGroups(): Promise<GroupModel[]> {
 		return GroupModel.findAll({
-			where: {'deletedAt': null},
 			attributes: {exclude: ['password']}
 		})
 			.then(groups => groups);
@@ -13,10 +12,7 @@ export class GroupDAO {
 
 	public static async getGroupById(id: string): Promise<GroupModel | null> {
 		return GroupModel.findOne({
-			where: {
-				id,
-				'deletedAt': null 
-			},
+			where: { id },
 			attributes: {exclude: ['password']}
 		});
 	}
@@ -26,7 +22,7 @@ export class GroupDAO {
 	}
     
 	public static async updateGroup(updatedGroup: GroupModel, id: string): Promise<[number, GroupModel[]]> {
-		return GroupModel.update({ ...updatedGroup }, { where: { id, 'deletedAt': null } });
+		return GroupModel.update({ ...updatedGroup }, { where: { id } });
 	}
 
 	public static async deleteGroup(id: string): Promise<number> {

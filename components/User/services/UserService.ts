@@ -1,6 +1,7 @@
 import  { UserModel }  from '../models/UserModel';
 import { UserDAO } from '../data-access/UserDAO';
 import { User } from '../types/userTypes';
+// import { Group } from '../../Group/types/GroupTypes';
 
 export class UserService {
 
@@ -16,6 +17,10 @@ export class UserService {
 		return await UserDAO.addUser({...user});
 	}
 
+	public static async getUsersByIds(ids: string[]) {
+		return await UserDAO.getUsersByIds(ids);
+	}
+	
 	public static async updateUser(updatedUser: UserModel, id: string) {
 		return await UserDAO.updateUser(updatedUser, id);
 	}
