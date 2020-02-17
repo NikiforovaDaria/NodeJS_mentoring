@@ -13,7 +13,7 @@ app.listen(port, async () => {
 		await database.authenticate();
 		await database.sync({force: true});
 	} catch (err) {
-		console.log(`Unable connect to ${port}`);
+		console.log(`Unable to connect to ${port}`);
 	}
 	():void => console.log(`Listenning on port ${port}`);
 }); 

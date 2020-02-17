@@ -1,6 +1,6 @@
 import { Transaction } from 'sequelize/types';
 
-import { UserGroupModel } from '../models/UserGroup';
+import { UserGroupModel } from '../models/UserGroupModel';
 import { GroupModel } from '../../Group/models/GroupModel';
 import { UserModel } from '../../User/models/UserModel';
 import database from '../../../config/database';

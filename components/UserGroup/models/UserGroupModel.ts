@@ -5,32 +5,32 @@ import { GroupModel } from '../../Group/models/GroupModel';
 import { UserModel } from '../../User/models/UserModel';
 
 export class UserGroupModel extends Model {
-    public groupId!: string;
-    public userId!: string;
+    public userId!: number;
+    public groupId!: number;
 }
 
-UserGroupModel.init ({
-	groupId: {
-		type: DataTypes.STRING,
+UserGroupModel.init({
+	userId: {
+		type: DataTypes.UUID,
 		allowNull: false,
 		references: {
 			model: 'UserModel',
 			key: 'id'
 		}
 	},
-	userId: {
-		type: DataTypes.STRING,
+	groupId: {
+		type: DataTypes.UUID,
 		allowNull: false,
 		references: {
 			model: 'GroupModel',
 			key: 'id'
 		}
-	}
+	},
 }, {
 	sequelize: database,
-	modelName: 'UserGroupModel',
-	tableName: 'userGroup'
-});
+	modelName: 'userGroup',
+},
+);
 
-UserModel.belongsToMany(GroupModel, {through: 'UserGroupModel'});
-GroupModel.belongsToMany(UserModel, {through: 'UserGroupModel'});
+UserModel.belongsToMany(GroupModel, {through: 'userGroup', foreignKey: 'userId'});
+GroupModel.belongsToMany(UserModel, {through: 'userGroup', foreignKey: 'groupId'});
