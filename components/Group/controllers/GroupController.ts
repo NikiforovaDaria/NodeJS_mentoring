@@ -9,7 +9,7 @@ export default class GroupController {
 			const groups = await GroupService.getAllGroups();
 			return res.status(200).json(groups);
 		} catch(err) {
-			res.status(500).json({ error: err.message });
+			res.status(500).send('Somethong went wrong while getting all groups');
 		}
 	}
 
@@ -19,7 +19,7 @@ export default class GroupController {
 			const group = await GroupService.getGroupById(id);
 			group
 				? res.status(200).json(group)
-				: res.status(500).send(`Group with ${id} not found :(`);
+				: res.status(404).send(`Group with ${id} not found :(`);
 		} catch(err) {
 			res.status(500).send(`Group with ${id} not found :(`);
 		}
