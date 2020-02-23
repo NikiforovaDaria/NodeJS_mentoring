@@ -4,7 +4,6 @@ export const logger = createLogger({
 	format: format.combine(format.timestamp(), format.json()),
 	transports: [
 		new transports.File({ level: 'info', filename: 'logger/info.log'}),
-		new transports.File({ level: 'warn', filename: 'logger/warn.log'}),
 		new transports.File({ level: 'error', filename: 'logger/error.log'})
 
 	],
