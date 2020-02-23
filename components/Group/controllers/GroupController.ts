@@ -49,13 +49,11 @@ export default class GroupController {
 			return res.status(200).json('Users are added to group');
 		} catch (err) {
 			res.status(500).send(err.message);
-			
 		}
 	}
 
 	public static async updateGroup(req: Request, res: Response) {
 		const { id } = req.params;
-		console.log(90909090, id);
 		const updatedGroup = req.body;
 		try {
 			const group = await GroupService.getGroupById(id);
