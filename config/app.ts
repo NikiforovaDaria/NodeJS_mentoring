@@ -33,6 +33,7 @@ app.listen(port, async () => {
 		await database.sync({force: false});
 		await logger.info(`Listenning on port ${port}`);
 		
+		
 	} catch (err) {
 		logger.error(`Unable to connect to ${port}. Server error!`);
 	}
