@@ -20,6 +20,13 @@ export class UserDAO {
 		});
 	}
 
+	public static async loginUser(login: string, password: string): Promise<UserModel | null>{
+		return UserModel.findOne({
+			where: { password, login },
+			attributes: {exclude: ['password']}
+		});
+	}
+
 	public static async getUsersByIds(ids: string[]): Promise<UserModel[] | null> {
 		return UserModel.findAll({
 			where: {

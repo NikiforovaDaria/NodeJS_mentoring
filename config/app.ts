@@ -6,6 +6,7 @@ import { logger, stream } from './logger';
 
 const app: express.Application = express();
 const port = process.env.PORT || 3000;
+export const privateJwtKey = 'veryPrivateKey';
 
 process
 	.on('unhandledRejection', (reason, promise) => {
@@ -24,6 +25,7 @@ morgan.token('params', (req: express.Request): string => {
 app.use(morgan(':params :method :url :response-time'));
 app.use(morgan('combined', { stream }));
 app.use(express.json());
+app.use('/auth', require('../Auth/routers/AuthRoute'));
 app.use('/users', require('../components/User/routers/UserRoute'));
 app.use('/groups', require('../components/Group/routers/GroupRoute'));
 
