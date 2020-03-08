@@ -37,6 +37,6 @@ app.listen(port, async () => {
 		
 		
 	} catch (err) {
-		logger.error(`Unable to connect to ${port}. Server error!`);
+		logger.error(`Unable to connect to ${port}. Server error! ${err.message}`);
 	}
 }); 
