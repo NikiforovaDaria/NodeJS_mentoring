@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 
-const database = new Sequelize('NodeJS_mentoring', 'postgres', 'root', {
+const database = new Sequelize('NodeJS_mentoring1', 'postgres', 'root', {
 	host: 'localhost',
 	dialect: 'postgres',
 

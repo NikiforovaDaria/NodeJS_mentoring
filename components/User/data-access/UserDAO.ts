@@ -1,5 +1,5 @@
 import { UserModel } from '../models/UserModel';
-import { User } from '../types/userTypes';
+import { User } from '../types/UserTypes';
 
 export class UserDAO {
 

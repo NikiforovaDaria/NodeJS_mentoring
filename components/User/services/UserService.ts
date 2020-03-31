@@ -1,7 +1,6 @@
 import  { UserModel }  from '../models/UserModel';
 import { UserDAO } from '../data-access/UserDAO';
-import { User } from '../types/userTypes';
-// import { Group } from '../../Group/types/GroupTypes';
+import { User } from '../types/UserTypes';
 
 export class UserService {
 
